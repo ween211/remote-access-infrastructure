@@ -102,7 +102,19 @@ NoNewPrivileges=true
 Restart=always
 RestartSec=5
 
-[Install]
+## Что было реализовано
+Развёрнут RustDesk Server через Docker Compose.
+Настроены сервисы hbbs и hbbr.
+Использован network_mode: host для работы RustDesk-портов.
+Настроено постоянное хранение данных RustDesk через volume.
+Развёрнут MeshCentral как production Node.js-сервис.
+Создан systemd unit для автозапуска и автоматического перезапуска сервиса.
+Настроен отдельный Linux-пользователь для MeshCentral.
+Использованы Linux capabilities для работы с портами 80/443 без запуска сервиса от root.
+Выполнена диагностика через systemctl, docker ps, ss, ps aux и journalctl.
+Подготовлены безопасные примеры конфигураций для публичного GitHub-репозитория.
+
+## [Install]
 WantedBy=multi-user.target
 
 Полный пример находится в файле:
@@ -123,22 +135,22 @@ systemd/meshcentral.service.example
 21119   RustDesk hbbr
 Диагностика
 
-Проверка состояния сервисов:
+## Проверка состояния сервисов:
 
 systemctl status meshcentral.service --no-pager
 docker ps
 ss -tulpn
 
-Просмотр логов MeshCentral:
+## Просмотр логов MeshCentral:
 
 journalctl -u meshcentral.service -n 100 --no-pager
 journalctl -u meshcentral.service -f
 
-Проверка контейнеров RustDesk:
+## Проверка контейнеров RustDesk:
 
 docker logs hbbs --tail=100
 docker logs hbbr --tail=100
 
-Дополнительные команды для диагностики находятся в файле:
+## Дополнительные команды для диагностики находятся в файле:
 
 docs/diagnostics.md
