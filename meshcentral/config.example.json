@@ -1,0 +1,22 @@
+{
+  "settings": {
+    "cert": "remote.example.com",
+    "WANonly": false,
+    "LANonly": false,
+    "sessionKey": "change-this-session-key",
+    "port": 443,
+    "aliasPort": 443,
+    "redirPort": 80,
+    "redirAliasPort": 80,
+    "mpsPort": 4433,
+    "mpsAliasPort": 4433,
+    "CookieEncoding": "hex"
+  },
+  "domains": {
+    "": {
+      "title": "Remote Access Panel",
+      "title2": "Self-hosted MeshCentral",
+      "NewAccounts": false
+    }
+  }
+}
